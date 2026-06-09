@@ -8,24 +8,15 @@ on:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - name: Android32
-            target: Android32
-          - name: Android64
-            target: Android64
-
-    name: ${{ matrix.config.name }}
+    name: Build Mod
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout CLI
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Build Mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          bindings: geode-sdk/bindings
-          target: ${{ matrix.config.target }}
+          combine: true
+          target: Android
